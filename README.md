@@ -1,4 +1,4 @@
-Krypto Backend
+## Krypto Backend
 
 Este backend em **Flask + TensorFlow** realiza previsões do preço do **Bitcoin (BTC-USD)** utilizando um modelo **LSTM** treinado e um **scaler** serializado.
 
