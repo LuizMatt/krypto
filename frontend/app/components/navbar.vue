@@ -9,7 +9,7 @@
 
         <ul class="nav-list">
             <li>
-                <NuxtLink to="/overview" class="nav-link">
+                <NuxtLink to="/" class="nav-link">
                     <TrendingUp class="icon" /> Overview
                 </NuxtLink>
             </li>
@@ -68,7 +68,7 @@ import { TrendingUp, BarChart3, Target, Settings, Info } from 'lucide-vue-next'
 }
 
 .logo-icon {
-    background-color: #22d3ee;
+    background-color: #f4b400;
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -80,7 +80,7 @@ import { TrendingUp, BarChart3, Target, Settings, Info } from 'lucide-vue-next'
 .logo-text {
     font-weight: 600;
     font-size: 18px;
-    color: #22d3ee;
+    color: #f4b400;
 }
 
 .nav-list {
@@ -110,7 +110,7 @@ import { TrendingUp, BarChart3, Target, Settings, Info } from 'lucide-vue-next'
 }
 
 .nav-link.router-link-active {
-    background-color: #22d3ee;
+    background-color: #f4b400;
     color: #0b0e13;
     font-weight: 600;
 }
@@ -119,15 +119,11 @@ import { TrendingUp, BarChart3, Target, Settings, Info } from 'lucide-vue-next'
     width: 16px;
     height: 16px;
     stroke-width: 2;
+    color: #f4b400;
+    transition: color 0.2s ease;
 }
 
-@media (max-width: 768px) {
-    .navbar {
-        padding: 0 16px;
-    }
-
-    .nav-list {
-        gap: 12px;
-    }
+.nav-link.router-link-active .icon {
+    color: #0b0e13;
 }
 </style>
