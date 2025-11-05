@@ -1,0 +1,11 @@
+:root {
+  font-family: 'Inter', sans-serif;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #0b0e13;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
