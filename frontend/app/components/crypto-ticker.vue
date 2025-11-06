@@ -34,7 +34,7 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div ref="container" class="scroller">
+    <div ref="container" class="ticker scroller">
         <div ref="track" class="track"
             :style="{ '--duration': duration + 's', '--loop-distance': loopDistance + 'px' }">
             <div v-for="(it, i) in loopItems" :key="i" class="pill">
@@ -55,7 +55,7 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-:root {
+.ticker {
     --bg: #0c1118;
     --pill: #121824;
     --text: #e6eaf2;
