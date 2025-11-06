@@ -15,6 +15,8 @@
     --muted: #9aa3ad;
     --border: #1a2430;
     --warning: #f4b400;
+
+    --heading-color: var(--fg);
 }
 
 .layout {
@@ -29,5 +31,14 @@
     padding-right: 24px;
     max-width: 1100px;
     margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--heading-color);
 }
 </style>
