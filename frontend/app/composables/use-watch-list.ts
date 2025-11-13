@@ -1,4 +1,3 @@
-// composables/useWatchlist.ts
 import { ref, type Ref } from "vue"
 
 export type Id = string

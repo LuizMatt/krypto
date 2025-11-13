@@ -14,7 +14,7 @@ export type TickerItem = {
   changePct: number
 }
 
-export function useCryptoTicker(symbols: string[] = ["BTC", "XRP", "ADA"], refreshMs = 60_000) {
+export function useCryptoTicker(symbols: string[] = ["BTC", "XRP", "ADA"], refreshMs = 120_000) {
   const items = ref<TickerItem[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)
@@ -32,7 +32,6 @@ export function useCryptoTicker(symbols: string[] = ["BTC", "XRP", "ADA"], refre
         query: {
           vs_currency: "usd",
           ids,
-          // sem sparkline:
           sparkline: "false",
           price_change_percentage: "24h",
         },

@@ -13,13 +13,23 @@ export type MarketRow = {
   sparkline_in_7d?: { price: number[] }
 }
 
-const BASE = "https://api.coingecko.com/api/v3"
+const BASE = "/api/coingecko"
 
 export function useCoingecko() {
   async function markets(ids: string[]) {
     if (!ids.length) return []
-    const url = `${BASE}/coins/markets?vs_currency=usd&ids=${encodeURIComponent(ids.join(","))}&order=market_cap_desc&per_page=${ids.length}&page=1&price_change_percentage=1h,24h,7d&sparkline=true`
-    return await $fetch<MarketRow[]>(url)
+
+    return await $fetch<MarketRow[]>(`${BASE}/markets`, {
+      query: {
+        vs_currency: "usd",
+        ids: ids.join(","),
+        order: "market_cap_desc",
+        per_page: ids.length,
+        page: 1,
+        price_change_percentage: "1h,24h,7d",
+        sparkline: true,
+      },
+    })
   }
 
   return { markets }

@@ -16,7 +16,7 @@ export function useTopMovers(opts?: {
 }) {
   const gainersCount = opts?.gainersCount ?? 5
   const losersCount = opts?.losersCount ?? 5
-  const refreshMs = opts?.refreshMs ?? 60_000
+  const refreshMs = opts?.refreshMs ?? 120_000
 
   const gainers = ref<CoinRow[]>([])
   const losers = ref<CoinRow[]>([])
@@ -28,7 +28,7 @@ export function useTopMovers(opts?: {
     loading.value = true
     error.value = null
     try {
-      const base = "https://api.coingecko.com/api/v3/coins/markets"
+      const base = "/api/coingecko/markets"
       const query: Record<string, any> = {
         vs_currency: "usd",
         order: "market_cap_desc",
