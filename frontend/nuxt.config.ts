@@ -5,6 +5,12 @@ export default defineNuxtConfig({
   srcDir: 'app',
 
   css: ['~/assets/main.css'],
+    runtimeConfig: {
+    public: {
+      predictionsApiBase: process.env.PREDICTIONS_API_BASE || 'http://localhost:5001'
+    }
+  },
+
   app: {
     head: {
       link: [
