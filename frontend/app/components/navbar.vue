@@ -24,11 +24,6 @@
                 </NuxtLink>
             </li>
             <li>
-                <NuxtLink to="/settings" class="nav-link">
-                    <Settings class="icon" /> Settings
-                </NuxtLink>
-            </li>
-            <li>
                 <NuxtLink to="/about" class="nav-link">
                     <Info class="icon" /> About
                 </NuxtLink>
