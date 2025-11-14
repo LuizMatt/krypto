@@ -3,8 +3,6 @@ import { ref, computed, onMounted } from "vue"
 import { useCoingecko, type MarketRow } from "../../composables/use-coingecko"
 import { useWatchlist } from "../../composables/use-watch-list"
 
-// moedas que vão aparecer na página de markets
-// (pode aumentar essa lista depois)
 const MARKET_IDS = [
     "bitcoin",
     "ethereum",
@@ -22,8 +20,8 @@ const { markets } = useCoingecko()
 const { ids: favIds, toggle } = useWatchlist()
 
 const loading = ref(false)
-const error = ref < string | null > (null)
-const rows = ref < MarketRow[] > ([])
+const error = ref<string | null>(null)
+const rows = ref<MarketRow[]>([])
 const q = ref("")
 
 async function load() {
@@ -78,11 +76,11 @@ function money(n: number) {
             <thead>
                 <tr>
                     <th class="w-asset">Asset</th>
-                    <th>Price</th>
-                    <th>24h %</th>
-                    <th class="w-actions"></th>
+                    <th class="th-num">Price</th>
+                    <th class="th-num">24h %</th>
                 </tr>
             </thead>
+
             <tbody>
                 <tr v-for="r in filtered" :key="r.id">
                     <td class="asset">
@@ -98,18 +96,15 @@ function money(n: number) {
                             <small>{{ r.name }}</small>
                         </div>
                     </td>
+
                     <td class="num">{{ money(r.current_price) }}</td>
+
                     <td class="num" :class="(r.price_change_percentage_24h_in_currency ?? 0) >= 0 ? 'pos' : 'neg'">
                         {{
                             r.price_change_percentage_24h_in_currency == null
                                 ? "—"
                                 : r.price_change_percentage_24h_in_currency.toFixed(2) + '%'
                         }}
-                    </td>
-                    <td class="actions">
-                        <NuxtLink :to="`/markets/${r.id}`" class="btn">
-                            View
-                        </NuxtLink>
                     </td>
                 </tr>
             </tbody>
@@ -138,7 +133,6 @@ function money(n: number) {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
     margin-bottom: 16px;
 }
 
@@ -168,27 +162,23 @@ function money(n: number) {
     color: var(--tm-muted);
 }
 
-.state {
-    padding: 16px 0;
-    font-size: 14px;
-    color: var(--tm-muted);
-}
-
-.state.error {
-    color: var(--tm-red);
-}
-
 .tbl {
     width: 100%;
     border-collapse: collapse;
 }
 
 thead th {
-    text-align: left;
     font-weight: 600;
     color: var(--tm-muted);
     padding: 10px;
     font-size: 14px;
+}
+.th-num {
+    text-align: right;
+}
+
+.w-asset {
+    width: 55%;
 }
 
 tbody td {
@@ -201,15 +191,6 @@ tbody td {
 
 tbody tr:hover td {
     background: rgba(255, 255, 255, 0.03);
-}
-
-.w-asset {
-    width: 40%;
-}
-
-.w-actions {
-    width: 1%;
-    white-space: nowrap;
 }
 
 .asset {
@@ -256,15 +237,13 @@ tbody tr:hover td {
     color: var(--tm-red);
 }
 
-.actions .btn,
-.btn {
-    display: inline-block;
-    padding: 5px 10px;
-    border: 1px solid var(--tm-border);
-    border-radius: 10px;
-    color: var(--tm-text);
-    background: var(--tm-bg);
-    text-decoration: none;
-    font-size: 13px;
+.state {
+    padding: 16px 0;
+    font-size: 14px;
+    color: var(--tm-muted);
+}
+
+.state.error {
+    color: var(--tm-red);
 }
 </style>

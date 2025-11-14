@@ -30,7 +30,9 @@ function startPolling(ms = 30000) {
         if (!document.hidden) load()
     }, ms)
 }
-function stopPolling() { if (t) { clearInterval(t); t = null } }
+function stopPolling() {
+    if (t) { clearInterval(t); t = null }
+}
 
 onMounted(() => { load(); startPolling(30000) })
 onBeforeUnmount(stopPolling)
@@ -57,6 +59,7 @@ const filtered = computed(() => {
 function money(n: number) {
     return n.toLocaleString("en-US", { style: "currency", currency: "USD" })
 }
+
 function pct(n: number | null | undefined) {
     if (n == null) return "—"
     const sign = n > 0 ? "+" : ""
@@ -67,6 +70,7 @@ function hasSpark(r: MarketRow): boolean {
     const s = r.sparkline_in_7d && r.sparkline_in_7d.price
     return Array.isArray(s) && s.length > 0
 }
+
 function sparkPointsFrom(r: MarketRow): string {
     const series = (r.sparkline_in_7d && r.sparkline_in_7d.price) || []
     if (series.length === 0) return ""
@@ -76,6 +80,7 @@ function sparkPointsFrom(r: MarketRow): string {
     const N = series.length
     return series.map((v, i) => `${(i / (N - 1)) * 100},${normY(v)}`).join(" ")
 }
+
 function lastDelta(r: MarketRow): number {
     const s = r.sparkline_in_7d && r.sparkline_in_7d.price
     if (!s || s.length < 2) return 0
@@ -107,17 +112,19 @@ function lastDelta(r: MarketRow): number {
                         <th @click="setSort('price')">
                             Price <i class="sort" :class="[sortBy === 'price' ? sortDir : '']"></i>
                         </th>
-                        <th @click="setSort('h1')">1h <i class="sort" :class="[sortBy === 'h1' ? sortDir : '']"></i>
+                        <th @click="setSort('h1')">
+                            1h <i class="sort" :class="[sortBy === 'h1' ? sortDir : '']"></i>
                         </th>
-                        <th @click="setSort('h24')">24h <i class="sort" :class="[sortBy === 'h24' ? sortDir : '']"></i>
+                        <th @click="setSort('h24')">
+                            24h <i class="sort" :class="[sortBy === 'h24' ? sortDir : '']"></i>
                         </th>
-                        <th @click="setSort('d7')">7d <i class="sort" :class="[sortBy === 'd7' ? sortDir : '']"></i>
+                        <th @click="setSort('d7')">
+                            7d <i class="sort" :class="[sortBy === 'd7' ? sortDir : '']"></i>
                         </th>
                         <th>Sparkline</th>
                         <th @click="setSort('volume')">
                             Volume <i class="sort" :class="[sortBy === 'volume' ? sortDir : '']"></i>
                         </th>
-                        <th></th>
                     </tr>
                 </thead>
 
@@ -155,10 +162,6 @@ function lastDelta(r: MarketRow): number {
                         </td>
 
                         <td class="num">{{ money(r.total_volume) }}</td>
-
-                        <td class="actions">
-                            <NuxtLink :to="`/markets/${r.id}`" class="btn">View</NuxtLink>
-                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -175,10 +178,10 @@ function lastDelta(r: MarketRow): number {
     --tm-text: #e6eaf2;
     --tm-muted: #9aa4b2;
     --tm-border: #1f2937;
-    --tm-green: #16a34a;
-    --tm-red: #dc2626;
     --tm-panel-bg: #101623;
     --tm-row-bg: #0f1420;
+    --tm-green: #16a34a;
+    --tm-red: #dc2626;
     background: var(--tm-panel-bg);
     border: 1px solid var(--tm-border);
     border-radius: 14px;
@@ -296,18 +299,6 @@ tbody tr:hover td {
     fill: none;
     stroke: var(--tm-red);
     stroke-width: 2;
-}
-
-.actions .btn,
-.btn {
-    display: inline-block;
-    padding: 5px 10px;
-    border: 1px solid var(--tm-border);
-    border-radius: 10px;
-    color: var(--tm-text);
-    background: var(--tm-bg);
-    text-decoration: none;
-    font-size: 13px;
 }
 
 .muted {
