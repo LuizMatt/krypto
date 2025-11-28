@@ -8,4 +8,7 @@ tensorflow==2.13.0
 flask
 yfinance
 multitasking==0.0.11
+mwclient 
+transformers 
+torch 
 
